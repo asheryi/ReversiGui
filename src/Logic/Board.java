@@ -36,15 +36,15 @@ public class Board {
     }
 
 
-    int getRows() {
+    public int getRows() {
         return rows;
     }
 
-    int getColumns() {
+    public int getColumns() {
         return columns;
     }
 
-    TypesOf.Color getCellValue(int i, int j) {
+    public TypesOf.Color getCellValue(int i, int j) {
         return this.grid[i - 1][j - 1];
     }
 
