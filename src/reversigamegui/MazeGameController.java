@@ -1,10 +1,9 @@
 package reversigamegui;
 
-import Logic.Board;
+import ConfigWin.ConfigWinController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import graphicboard.GraphicBoard;
 
 import java.net.URL;
@@ -15,14 +14,16 @@ public class MazeGameController implements Initializable {
     private HBox root;
     //private Board board;
     private GraphicBoard graphicBoard;
-
-    public MazeGameController(Board board, Color firstPlayerColor, Color secPlayerColor) {
-        this.graphicBoard = new GraphicBoard(board, firstPlayerColor, secPlayerColor);
-    }
+    private ConfigWinController configWinController;
+    //public MazeGameController(Board board, Color firstPlayerColor, Color secPlayerColor) {
+    //this.graphicBoard = new GraphicBoard(board, firstPlayerColor, secPlayerColor);
+    //}
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        graphicBoard.setPrefWidth(400);
+
+
+       /* graphicBoard.setPrefWidth(400);
         graphicBoard.setPrefHeight(400);
         root.getChildren().add(0, graphicBoard);
         graphicBoard.draw();
@@ -35,7 +36,14 @@ public class MazeGameController implements Initializable {
         root.heightProperty().addListener((observable, oldValue, newValue) -> {
             graphicBoard.setPrefHeight(newValue.doubleValue());
             graphicBoard.draw();
-        });
+        });*/
+
+        fix();
+    }
+
+    public void fix() {
+        configWinController = new ConfigWinController();
+        root.getChildren().add(0, configWinController);
     }
 }
 
