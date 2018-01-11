@@ -18,16 +18,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = (Parent) FXMLLoader.load(this.getClass().getResource("menuWin.fxml"));
-            primaryStage.setTitle("Hello World");
-            primaryStage.setScene(new Scene(root, 340, 400));
+            primaryStage.setTitle("Welcome to the Reversi game");
+            primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("menuWin.fxml"))));
             primaryStage.show();
-            //HBox root = (HBox) FXMLLoader.load(getClass().getResource("ConfigWinController.fxml"));
-           /* Scene scene = new Scene(root, 520, 400);
-            //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-            primaryStage.setTitle("Maze game");
-            primaryStage.setScene(scene);
-
-            primaryStage.show();*/
         } catch (Exception e) {
             e.printStackTrace();
         }

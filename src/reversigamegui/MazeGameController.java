@@ -5,13 +5,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
 import graphicboard.GraphicBoard;
+import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MazeGameController implements Initializable {
     @FXML
     private HBox root;
+    @FXML
+    private VBox boardContainer;
     //private Board board;
     private GraphicBoard graphicBoard;
     private ConfigWinController configWinController;
@@ -21,30 +29,40 @@ public class MazeGameController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        readSettings();
+        graphicBoard = new GraphicBoard();
 
-
-       /* graphicBoard.setPrefWidth(400);
+        graphicBoard.setPrefWidth(400);
         graphicBoard.setPrefHeight(400);
-        root.getChildren().add(0, graphicBoard);
+        boardContainer.getChildren().add(0, graphicBoard);
+
         graphicBoard.draw();
-        root.setOnKeyPressed(graphicBoard.getOnKeyPressed());
-        root.widthProperty().addListener((observable, oldValue, newValue) -> {
+        boardContainer.setOnKeyPressed(graphicBoard.getOnKeyPressed());
+        boardContainer.widthProperty().addListener((observable, oldValue, newValue) -> {
             double boardNewWidth = newValue.doubleValue() - 120;
             graphicBoard.setPrefWidth(boardNewWidth);
             graphicBoard.draw();
         });
-        root.heightProperty().addListener((observable, oldValue, newValue) -> {
+        boardContainer.heightProperty().addListener((observable, oldValue, newValue) -> {
             graphicBoard.setPrefHeight(newValue.doubleValue());
             graphicBoard.draw();
-        });*/
+        });
 
-        fix();
+
+
     }
 
-    public void fix() {
-        configWinController = new ConfigWinController();
-        root.getChildren().add(0, configWinController);
+    private void readSettings() {
+        try {
+            List<String> settings = Files.readAllLines(Paths.get("settings.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
+
+
 }
 
 

@@ -20,12 +20,9 @@ public class MenuWinController extends GridPane {
 
         Stage stage = (Stage) configBtn.getScene().getWindow();
         try {
-            Parent root = (Parent) FXMLLoader.load(this.getClass().getResource("/ConfigWin/ConfigWin.fxml"));
-            stage.setTitle("Hello World");
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+            stage.setTitle("Settings");
+            stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/ConfigWin/ConfigWin.fxml"))));
             stage.show();
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
