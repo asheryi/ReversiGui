@@ -21,20 +21,21 @@ public class Game {
      * @param display1 - 1'st player display .
      * @param display2 - 2'nd display .
      */
-    Game(int rows, int columns, Display display1, Display display2) {
-        List<Cell> blacks = new ArrayList<>(2);
-        List<Cell> whites = new ArrayList<>(2);
+    public Game(int rows, int columns, Display display1, Display display2, Board board) {
 
         players = new Player[2];
         displays = new Display[2];
 
-        blacks.add(new Cell(rows / 2, columns / 2 + 1));
-        blacks.add(new Cell(rows / 2 + 1, columns / 2));
+        List<Cell> blacks = new ArrayList<>(2);
+        List<Cell> whites = new ArrayList<>(2);
 
-        whites.add(new Cell(rows / 2, columns / 2));
-        whites.add(new Cell(rows / 2 + 1, columns / 2 + 1));
+        board.setCellAs(rows / 2, columns / 2 + 1, TypesOf.Color.black);
+        board.setCellAs(rows / 2 + 1, columns / 2, TypesOf.Color.black);
 
-        this.board = new Board(rows, columns, blacks, whites);
+        board.setCellAs(rows / 2, columns / 2, TypesOf.Color.white);
+        board.setCellAs(rows / 2 + 1, columns / 2 + 1, TypesOf.Color.white);
+
+        this.board = board;
         this.gameLogic = new StdGameLogic();
 
         this.displays[0] = display1;
@@ -181,5 +182,9 @@ public class Game {
             this.board.setCellAs(c.getRow(), c.getColumn(), currPlayerColor);
         }
         updateScores(players[currPlayer], players[1 - currPlayer], path.length());
+    }
+
+    public final Board getBoard() {
+        return this.board;
     }
 }

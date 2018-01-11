@@ -7,7 +7,7 @@ public class Cell implements Comparable<Cell> {
     private int row;
     private int column;
 
-    Cell(int row_, int column_) {
+   public Cell(int row_, int column_) {
         row = row_;
         column = column_;
     }

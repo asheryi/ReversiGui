@@ -11,18 +11,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = (Parent) FXMLLoader.load(this.getClass().getResource("MazeGame.fxml"));
-
-            /*primaryStage.setTitle("Hello World");
-            primaryStage.setScene(new Scene(root, 300.0D, 275.0D));
+            FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("MazeGame.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            MazeGameController mazeGameController = fxmlLoader.getController();
+            primaryStage.setTitle("Hello World");
+            primaryStage.setScene(new Scene(root, 600, 600));
             primaryStage.show();
-            //HBox root = (HBox) FXMLLoader.load(getClass().getResource("ConfigWinController.fxml"));
-            Scene scene = new Scene(root, 520, 400);
-            //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-            primaryStage.setTitle("Maze game");
-            primaryStage.setScene(scene);
-
-            primaryStage.show();*/
+            mazeGameController.startGame();
         } catch (Exception e) {
             e.printStackTrace();
         }

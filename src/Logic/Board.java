@@ -8,7 +8,7 @@ public class Board {
     private int columns;
     private TypesOf.Color[][] grid;
 
-    Board(int rows_, int columns_, List<Cell> blacks, List<Cell> whites) {
+   public Board(int rows_, int columns_, List<Cell> blacks, List<Cell> whites) {
         this.rows = rows_;
         this.columns = columns_;
         grid = new TypesOf.Color[this.rows][this.columns];
@@ -30,6 +30,7 @@ public class Board {
             this.setCellAs(whites.get(i).getRow(), whites.get(i).getColumn(), TypesOf.Color.white);
         }
     }
+
 
     void setCellAs(int i, int j, TypesOf.Color value) {
         this.grid[i - 1][j - 1] = value;
