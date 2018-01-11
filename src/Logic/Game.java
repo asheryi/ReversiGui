@@ -12,6 +12,7 @@ public class Game {
     private Display[] displays;
     private Board board;
     private int currPlayer;
+    private List<Path> currPlayerValidMoves;
 
     /**
      * Game constructor.
@@ -42,6 +43,8 @@ public class Game {
         this.displays[1] = display2;
 
         createPlayers(blacks.size(), whites.size());
+
+        this.currPlayerValidMoves = gameLogic.validMovePaths(board, TypesOf.Color.black);
     }
 
     /**
@@ -123,6 +126,55 @@ public class Game {
         displays[currPlayer].showEndGameStatus(gameStatus);
     }
 
+    public void makeMove(Cell move) {
+        TypesOf.Color currPlayerColor = (players[currPlayer].getColor());
+
+        //List<Path> movePaths = this.gameLogic.validMovePaths(board, currPlayerColor);
+        boolean currPlayerhasMoves = !currPlayerValidMoves.isEmpty();
+
+        TypesOf.GameStatus gameStatus = gameLogic.currGameStatus(board, currPlayerhasMoves, currPlayerColor,
+                players[0].getScore(),
+                players[1].getScore());
+
+        if (gameStatus == TypesOf.GameStatus.noOneWon || gameStatus == TypesOf.GameStatus.passTurn) {
+
+            boolean passTurnState = gameStatus == TypesOf.GameStatus.passTurn;
+
+
+            if (!passTurnState) {
+                //Cell move = players[currPlayer].chooseAndReturnMove(movePaths);
+                Path currPathOfLandingPoint = null;
+
+                if (move == null) {
+                    displays[currPlayer].showError(TypesOf.Error.notIntegers);
+                } else if (isOutOfBounds(move)) {
+                    displays[currPlayer].showError(TypesOf.Error.outOfBounds);
+                    return;
+                } else {
+                    currPathOfLandingPoint = pathOfLandingPoint(currPlayerValidMoves, move);
+                    if (currPathOfLandingPoint == null) {
+                        displays[currPlayer].showError(TypesOf.Error.notValidMove);
+                        return;
+                    } else {
+                        displays[currPlayer].showMoveDone(move, currPlayerColor);
+                    }
+                }
+                //move = players[currPlayer].chooseAndReturnMove(movePaths);
+                this.attackThose(currPathOfLandingPoint, currPlayerColor);
+                this.displays[currPlayer].show(board, currPlayerValidMoves, currPlayerColor, passTurnState, players[0].getScore(),
+                        players[1].getScore());
+
+            }
+
+            currPlayerColor = nextPlayer();
+
+            //movePaths = this.gameLogic.validMovePaths(board, currPlayerColor);
+            //currPlayerhasMoves = !movePaths.isEmpty();
+
+            //gameStatus = gameLogic.currGameStatus(board, currPlayerhasMoves, currPlayerColor, players[0].getScore(), players[1].getScore());
+        }
+    }
+
     /**
      * Update the scores of the players.
      *
@@ -141,6 +193,7 @@ public class Game {
      */
     private TypesOf.Color nextPlayer() {
         this.currPlayer = (this.currPlayer + 1) % 2;
+        this.currPlayerValidMoves = gameLogic.validMovePaths(board, players[this.currPlayer].getColor());
         return players[this.currPlayer].getColor();
     }
 
@@ -186,5 +239,9 @@ public class Game {
 
     public final Board getBoard() {
         return this.board;
+    }
+
+    public List<Path> getValidMoves() {
+        return this.currPlayerValidMoves;
     }
 }

@@ -2,6 +2,7 @@ package reversigamegui;
 
 import ConfigWin.ConfigWinController;
 import Logic.*;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
@@ -9,6 +10,7 @@ import graphicboard.GraphicBoard;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -46,20 +48,42 @@ public class MazeGameController implements Initializable, Display {
         boardContainer_.getChildren().add(0, graphicBoard);
 
         boardContainer_.setOnKeyPressed(graphicBoard.getOnKeyPressed());
+        boardContainer_.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+            @Override public void handle(javafx.scene.input.MouseEvent event) {
+                int height = (int) boardContainer_.getScene().getWindow().getHeight();
+                int width = (int) boardContainer_.getScene().getWindow().getWidth();
+                height=(int)boardContainer_.getPrefWidth();
+                System.out.println("(getPrefHeight: "       +   height    + ", y: ");
+                int cellHeight = height / board.getRows();
+                int cellWidth = width / board.getColumns();
+                int squreSide = cellHeight >= cellWidth ? cellWidth : cellHeight;
+                Integer x=(int)Math.floor(event.getX()/squreSide)+1;
+                Integer y=(int)Math.floor(event.getY()/squreSide)+1;
+                Cell c=new Cell(y,x);
+                game.makeMove(c);
+                System.out.println("(x: "       +   x    + ", y: "       +y);
+
+                // System.out.println("(x: "       + event.getX()      + ", y: "       + event.getY()       + ") -- " + "(sceneX: "  + event.getSceneX() + ", sceneY: "  + event.getSceneY()  + ") -- " + "(screenX: " + event.getScreenX()+ ", screenY: " + event.getScreenY() + ")");
+
+            }
+        });
+      //  boardContainer_.setOnMouseClicked(graphicBoard.getOnMouseClicked());
         boardContainer_.widthProperty().addListener((observable, oldValue, newValue) -> {
             double boardNewWidth = newValue.doubleValue() - 120;
             graphicBoard.setPrefWidth(boardNewWidth);
+            boardContainer_.setPrefWidth(boardNewWidth);
             graphicBoard.draw(board);
         });
         boardContainer_.heightProperty().addListener((observable, oldValue, newValue) -> {
             graphicBoard.setPrefHeight(newValue.doubleValue());
+            boardContainer_.setPrefWidth(newValue.doubleValue());
             graphicBoard.draw(board);
         });
 
     }
 
     public void startGame(){
-        game.start();
+        //game.start();
     }
 
     private void readSettings() {

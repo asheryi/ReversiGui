@@ -3,6 +3,8 @@ package graphicboard;
 import Logic.Board;
 import Logic.Cell;
 import Logic.TypesOf;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
@@ -10,6 +12,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +30,7 @@ public class GraphicBoard extends GridPane {
     private List<Cell> moves;
 
     public GraphicBoard() {
+
         FXMLLoader fxmlLoader = new
                 FXMLLoader(getClass().getResource("GraphicBoard.fxml"));
 
@@ -63,6 +68,7 @@ public class GraphicBoard extends GridPane {
     }
 
     public GraphicBoard(Color firstPlayerColor, Color secPlayerColor) {
+
        // this.board = board;
         FXMLLoader fxmlLoader = new
                 FXMLLoader(getClass().getResource("GraphicBoard.fxml"));
@@ -91,8 +97,11 @@ public class GraphicBoard extends GridPane {
         }
 
     }
-
+    public void selectCell(MouseEvent event) {
+        System.out.println(event.getX());
+    }
     public void draw(Board board_) {
+        System.out.println("hEY");
         this.rows = board_.getRows();
         this.columns = board_.getColumns();
         this.getChildren().clear();
@@ -110,27 +119,20 @@ public class GraphicBoard extends GridPane {
                 rec.setStroke(Color.GREEN);
                 this.add(rec, j, i);
                 if (board_.getCellValue(i + 1, j + 1) == TypesOf.Color.black) {
-                    //Rectangle rec = new Rectangle(squreSide, squreSide, this.firstColor);
                     Ellipse elipse = new Ellipse(squreSide / 3, squreSide / 6);
-                    // Ellipse elipse2 = new Ellipse(0, 0, squreSide / 2, squreSide / 8);
-
+                    setHalignment(elipse, HPos.CENTER);
                     elipse.setStroke(Color.BLUE);
+                    elipse.setFill(firstColor);
                     elipse.setStrokeWidth(3);
-                    //rec.setStrokeWidth(1.5);
-                    //rec.setStroke(Color.GREEN);
-                    // this.add(rec, j, i);
-                    if (i == 3 && j == 4 || i == 4 && j == 3) {
-                        this.setHalignment(elipse, HPos.CENTER);
-                        this.add(elipse, 4, 3);
-                        Ellipse elipse2 = new Ellipse(squreSide / 2, squreSide / 2, squreSide / 3, squreSide / 6);
-                        this.add(elipse2, 3, 4);
-                    }
+                    this.add(elipse, j, i);
 
                 } else if (board_.getCellValue(i + 1, j + 1) == TypesOf.Color.white) {
-                    // Rectangle rec = new Rectangle(squreSide, squreSide, this.secColor);
-                    //rec.setStroke(Color.GREEN);
-                    //rec.setStrokeWidth(1.5);
-                    //this.add(rec, j, i);
+                    Ellipse elipse = new Ellipse(squreSide / 3, squreSide / 6);
+                    setHalignment(elipse, HPos.CENTER);
+                    elipse.setStroke(Color.BLUE);
+                    elipse.setFill(secColor);
+                    elipse.setStrokeWidth(3);
+                    this.add(elipse, j, i);
                 }
             }
         }
