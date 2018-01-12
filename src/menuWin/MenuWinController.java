@@ -28,6 +28,20 @@ public class MenuWinController extends GridPane {
         }
 
     }
+    @FXML
+    public void startGame() {
+
+        Stage stage = (Stage) configBtn.getScene().getWindow();
+        try {
+            stage.setTitle("Reversi");
+            stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/reversigamegui/MazeGame.fxml")),600,600));
+
+            stage.show();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
 
 
 }

@@ -30,9 +30,6 @@ public class MazeGameController implements Initializable, Display {
     private Color secPlayerColor;
     private Integer boardSize;
     private Game game;
-    //public MazeGameController(Board board, Color firstPlayerColor, Color secPlayerColor) {
-    //this.graphicBoard = new GraphicBoard(board, firstPlayerColor, secPlayerColor);
-    //}
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,10 +47,8 @@ public class MazeGameController implements Initializable, Display {
         boardContainer_.setOnKeyPressed(graphicBoard.getOnKeyPressed());
         boardContainer_.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
             @Override public void handle(javafx.scene.input.MouseEvent event) {
-                int height = (int) boardContainer_.getScene().getWindow().getHeight();
-                int width = (int) boardContainer_.getScene().getWindow().getWidth();
-                height=(int)boardContainer_.getPrefWidth();
-                System.out.println("(getPrefHeight: "       +   height    + ", y: ");
+                int  height=(int)boardContainer_.getPrefHeight();
+                int width = (int)boardContainer_.getPrefWidth();
                 int cellHeight = height / board.getRows();
                 int cellWidth = width / board.getColumns();
                 int squreSide = cellHeight >= cellWidth ? cellWidth : cellHeight;
@@ -62,9 +57,6 @@ public class MazeGameController implements Initializable, Display {
                 Cell c=new Cell(y,x);
                 game.makeMove(c);
                 System.out.println("(x: "       +   x    + ", y: "       +y);
-
-                // System.out.println("(x: "       + event.getX()      + ", y: "       + event.getY()       + ") -- " + "(sceneX: "  + event.getSceneX() + ", sceneY: "  + event.getSceneY()  + ") -- " + "(screenX: " + event.getScreenX()+ ", screenY: " + event.getScreenY() + ")");
-
             }
         });
       //  boardContainer_.setOnMouseClicked(graphicBoard.getOnMouseClicked());
@@ -72,13 +64,14 @@ public class MazeGameController implements Initializable, Display {
             double boardNewWidth = newValue.doubleValue() - 120;
             graphicBoard.setPrefWidth(boardNewWidth);
             boardContainer_.setPrefWidth(boardNewWidth);
-            graphicBoard.draw(board);
+            graphicBoard.draw(board,game.getValidMoves());
         });
         boardContainer_.heightProperty().addListener((observable, oldValue, newValue) -> {
             graphicBoard.setPrefHeight(newValue.doubleValue());
-            boardContainer_.setPrefWidth(newValue.doubleValue());
-            graphicBoard.draw(board);
+            boardContainer_.setPrefHeight(newValue.doubleValue());
+            graphicBoard.draw(board,game.getValidMoves());
         });
+
 
     }
 
@@ -102,7 +95,7 @@ public class MazeGameController implements Initializable, Display {
 
     @Override
     public void show(Board board, List<Logic.Path> moves, TypesOf.Color currPlayerColor, boolean passTurn, int blacks, int whites) {
-        graphicBoard.draw(board);
+        graphicBoard.draw(board,game.getValidMoves());
     }
 
     @Override

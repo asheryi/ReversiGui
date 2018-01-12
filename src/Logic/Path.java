@@ -24,7 +24,7 @@ public class Path {
         return stopCells.get(index);
     }
 
-    Cell getLanding() {
+   public Cell getLanding() {
         return landing;
     }
 

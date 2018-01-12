@@ -2,6 +2,7 @@ package graphicboard;
 
 import Logic.Board;
 import Logic.Cell;
+import Logic.Path;
 import Logic.TypesOf;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -100,7 +101,8 @@ public class GraphicBoard extends GridPane {
     public void selectCell(MouseEvent event) {
         System.out.println(event.getX());
     }
-    public void draw(Board board_) {
+    public void draw(Board board_,List<Path> possibleMoves) {
+
         System.out.println("hEY");
         this.rows = board_.getRows();
         this.columns = board_.getColumns();
@@ -112,9 +114,6 @@ public class GraphicBoard extends GridPane {
         int squreSide = cellHeight >= cellWidth ? cellWidth : cellHeight;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                if(i == 7 && j ==7){
-                    System.out.println();
-                }
                 Rectangle rec = new Rectangle(squreSide, squreSide, this.cellColor);
                 rec.setStroke(Color.GREEN);
                 this.add(rec, j, i);
@@ -136,6 +135,13 @@ public class GraphicBoard extends GridPane {
                 }
             }
         }
+        for(int i=0;i<possibleMoves.size();i++){
+            Cell p=possibleMoves.get(i).getLanding();
+            Rectangle rec = new Rectangle(squreSide, squreSide, this.cellColor);
+            rec.setStroke(Color.ORANGE);
+            this.add(rec,p.getColumn()-1,p.getRow()-1);
+        }
 
     }
+
 }

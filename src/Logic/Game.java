@@ -161,13 +161,13 @@ public class Game {
                 }
                 //move = players[currPlayer].chooseAndReturnMove(movePaths);
                 this.attackThose(currPathOfLandingPoint, currPlayerColor);
-                this.displays[currPlayer].show(board, currPlayerValidMoves, currPlayerColor, passTurnState, players[0].getScore(),
-                        players[1].getScore());
+
 
             }
 
             currPlayerColor = nextPlayer();
-
+            this.displays[currPlayer].show(board, currPlayerValidMoves, currPlayerColor, passTurnState, players[0].getScore(),
+                    players[1].getScore());
             //movePaths = this.gameLogic.validMovePaths(board, currPlayerColor);
             //currPlayerhasMoves = !movePaths.isEmpty();
 

@@ -12,11 +12,11 @@ public class Cell implements Comparable<Cell> {
         column = column_;
     }
 
-    int getColumn() {
+  public   int getColumn() {
         return column;
     }
 
-    int getRow() {
+  public  int getRow() {
         return row;
     }
 
