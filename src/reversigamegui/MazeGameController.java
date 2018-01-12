@@ -113,10 +113,6 @@ public class MazeGameController implements Initializable, Display {
 
     }
 
-    @Override
-    public void showMenu() {
-
-    }
 }
 
 

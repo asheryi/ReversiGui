@@ -34,9 +34,4 @@ public interface Display {
      * @param playerColor
      */
     void showMoveDone(Cell cell, TypesOf.Color playerColor);
-
-    /**
-     * Show the initial menu.
-     */
-    void showMenu();
 }

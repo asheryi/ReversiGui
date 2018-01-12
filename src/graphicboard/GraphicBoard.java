@@ -70,11 +70,11 @@ public class GraphicBoard extends GridPane {
 
     public GraphicBoard(Color firstPlayerColor, Color secPlayerColor) {
 
-       // this.board = board;
+        // this.board = board;
         FXMLLoader fxmlLoader = new
                 FXMLLoader(getClass().getResource("GraphicBoard.fxml"));
 
-       // this.rows = board.getRows();
+        // this.rows = board.getRows();
         //this.columns = board.getColumns();
 
         this.firstColor = firstPlayerColor;
@@ -98,10 +98,12 @@ public class GraphicBoard extends GridPane {
         }
 
     }
+
     public void selectCell(MouseEvent event) {
         System.out.println(event.getX());
     }
-    public void draw(Board board_,List<Path> possibleMoves) {
+
+    public void draw(Board board_, List<Path> possibleMoves) {
 
         System.out.println("hEY");
         this.rows = board_.getRows();
@@ -135,11 +137,11 @@ public class GraphicBoard extends GridPane {
                 }
             }
         }
-        for(int i=0;i<possibleMoves.size();i++){
-            Cell p=possibleMoves.get(i).getLanding();
+        for (Path possibleMove : possibleMoves) {
+            Cell p = possibleMove.getLanding();
             Rectangle rec = new Rectangle(squreSide, squreSide, this.cellColor);
             rec.setStroke(Color.ORANGE);
-            this.add(rec,p.getColumn()-1,p.getRow()-1);
+            this.add(rec, p.getColumn() - 1, p.getRow() - 1);
         }
 
     }

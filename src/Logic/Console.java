@@ -113,10 +113,4 @@ public class Console implements Display {
         char whoDidAMove = colorAsCharacter(playerColor) == 'x' ? 'X' : 'O';
         System.out.println(whoDidAMove + " played : " + cell.toString());
     }
-
-    @Override
-    public void showMenu() {
-        System.out.println("To play against human player please press 1");
-        System.out.println("To play against AI player please press 0");
-    }
 }
