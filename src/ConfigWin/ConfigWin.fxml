@@ -84,6 +84,8 @@
         </padding>
     </HBox>
     <Button contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#saveSettings"
-            prefHeight="26.0" prefWidth="273.0" text="Apply" textAlignment="CENTER" textFill="#d71010"
+            prefHeight="26.0" prefWidth="273.0" text="Apply" textAlignment="CENTER" textFill="#15a12c"
             GridPane.hgrow="ALWAYS" GridPane.rowIndex="3"/>
+    <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#exitSettingsWindow" prefHeight="26.0"
+            prefWidth="116.0" text="Cancel" textFill="#f50707" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3"/>
 </GridPane>

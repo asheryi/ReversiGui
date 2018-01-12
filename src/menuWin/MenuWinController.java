@@ -1,7 +1,4 @@
 package menuWin;
-/**
- * Created by Brain on 10/01/2018.
- */
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,11 +18,14 @@ public class MenuWinController extends GridPane {
         Stage stage = (Stage) configBtn.getScene().getWindow();
         try {
             stage.setTitle("Settings");
+            Scene lastScene = this.getScene();
             stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/ConfigWin/ConfigWin.fxml"))));
             stage.show();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        System.out.println("AFTER SHOW");
 
     }
     @FXML
@@ -35,7 +35,6 @@ public class MenuWinController extends GridPane {
         try {
             stage.setTitle("Reversi");
             stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/reversigamegui/MazeGame.fxml")),600,600));
-
             stage.show();
         } catch (Exception ex) {
             ex.printStackTrace();
