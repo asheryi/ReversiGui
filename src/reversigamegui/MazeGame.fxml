@@ -16,11 +16,13 @@
             <Label text="Curr Player:" />
             <Pane fx:id="currPlayerImg" prefHeight="80.0" prefWidth="80.0" />
             <Label text="Score:" />
+            <Label fx:id="firstPlayerName" text="firstPlayerName"  />
             <Pane fx:id="firstPlayerImg" prefHeight="80.0" prefWidth="80.0" />
             <Label fx:id="firstPlayerScore" text="Label">
                <padding>
                   <Insets left="40.0" />
                </padding></Label>
+            <Label fx:id="secPlayerName" text="secPlayerName" />
             <Pane fx:id="secPlayerImg" prefHeight="80.0" prefWidth="80.0" />
             <Label fx:id="secPlayerScore" layoutX="10.0" layoutY="144.0" text="Label">
                <padding>

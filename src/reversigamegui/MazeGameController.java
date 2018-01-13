@@ -52,6 +52,9 @@ public class MazeGameController implements Initializable, Display {
     private Pane[] playersImg;
     public javafx.scene.control.Label firstPlayerScore;
     public javafx.scene.control.Label secPlayerScore;
+    public javafx.scene.control.Label firstPlayerName;
+    public javafx.scene.control.Label secPlayerName;
+
 
     public javafx.scene.control.Label errorLabel;
 
@@ -148,20 +151,13 @@ public class MazeGameController implements Initializable, Display {
         secPlayerScore.setText(String.valueOf(scores[1]));
 
     }
-
-    public void startGame(String firstPlayerName, String secPlayerName) {
-        playersName[0] = firstPlayerName;
-        playersName[1] = secPlayerName;
-    }
-
     private void readSettings() {
         try {
             playersColor = new Color[2];
-            playersName = new String[2];
             List<String> settings = Files.readAllLines(Paths.get("settings.txt"));
-            playersName[0] = settings.get(0);
             playersColor[0] = Color.valueOf(settings.get(1));
-            playersName[1] = settings.get(2);
+            firstPlayerName.setText(settings.get(0)+":");
+            secPlayerName.setText(settings.get(2)+":");
             playersColor[1] = Color.valueOf(settings.get(3));
             boardSize = Integer.valueOf(settings.get(4));
         } catch (IOException e) {

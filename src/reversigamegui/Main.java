@@ -14,10 +14,8 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("MazeGame.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             MazeGameController mazeGameController = fxmlLoader.getController();
-            primaryStage.setTitle("Hello World");
             primaryStage.setScene(new Scene(root, 600, 600));
             primaryStage.show();
-            mazeGameController.startGame("avi","david");
         } catch (Exception e) {
             e.printStackTrace();
         }
