@@ -54,4 +54,24 @@ public class ConfigWinController extends GridPane {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void firstPlayerColorChanged(){
+        playerColorChanged(0);
+    }
+    @FXML
+    public void secPlayerColorChanged(){
+        playerColorChanged(1);
+    }
+    public void playerColorChanged(int player){
+        if(firstColorCheckbox.getValue().equals(secColorCheckbox.getValue())){
+            Color defaultColor=Color.valueOf("Black");
+            if(defaultColor.equals(firstColorCheckbox.getValue()))
+                defaultColor=Color.valueOf("White");
+            if(player==0)
+            firstColorCheckbox.setValue(defaultColor);
+            else
+                secColorCheckbox.setValue(defaultColor);
+
+        }
+    }
 }

@@ -10,15 +10,13 @@ import javafx.stage.Stage;
 
 public class MenuWinController extends GridPane {
     @FXML
-    private Button configBtn;
-
+    private GridPane rootGrid;
     @FXML
     public void showConfigWin() {
 
-        Stage stage = (Stage) configBtn.getScene().getWindow();
+        Stage stage = (Stage) rootGrid.getScene().getWindow();
         try {
             stage.setTitle("Settings");
-            Scene lastScene = this.getScene();
             stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/ConfigWin/ConfigWin.fxml"))));
             stage.show();
         } catch (Exception ex) {
@@ -31,7 +29,7 @@ public class MenuWinController extends GridPane {
     @FXML
     public void startGame() {
 
-        Stage stage = (Stage) configBtn.getScene().getWindow();
+        Stage stage = (Stage) rootGrid.getScene().getWindow();
         try {
             stage.setTitle("Reversi");
             stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/reversigamegui/MazeGame.fxml")),600,600));
@@ -39,6 +37,12 @@ public class MenuWinController extends GridPane {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+    }
+    @FXML
+    public void exit() {
+        Stage stage = (Stage) rootGrid.getScene().getWindow();
+        stage.close();
 
     }
 

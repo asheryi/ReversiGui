@@ -13,83 +13,76 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.paint.Color?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
-          prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="ConfigWin.ConfigWinController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ConfigWin.ConfigWinController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-        <RowConstraints minHeight="1.0" prefHeight="1.0" vgrow="SOMETIMES"/>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="1.0" prefHeight="1.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <HBox prefHeight="125.0" prefWidth="433.0" spacing="58.0" GridPane.hgrow="ALWAYS">
         <GridPane.margin>
-            <Insets/>
+            <Insets />
         </GridPane.margin>
         <padding>
-            <Insets left="20.0" top="10.0"/>
+            <Insets left="20.0" top="10.0" />
         </padding>
-        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="First player's color :" HBox.hgrow="ALWAYS"/>
-        <ColorPicker fx:id="firstColorCheckbox" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="First player's color :" HBox.hgrow="ALWAYS" />
+        <ColorPicker fx:id="firstColorCheckbox" maxWidth="1.7976931348623157E308" onAction="#firstPlayerColorChanged" HBox.hgrow="ALWAYS">
             <value>
-                <Color/>
+                <Color />
             </value>
             <padding>
-                <Insets top="10.0"/>
+                <Insets top="10.0" />
             </padding>
         </ColorPicker>
     </HBox>
     <HBox spacing="40.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
         <padding>
-            <Insets left="20.0" top="10.0"/>
+            <Insets left="20.0" top="10.0" />
         </padding>
-        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Second player's color :" HBox.hgrow="ALWAYS"/>
-        <ColorPicker fx:id="secColorCheckbox" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Second player's color :" HBox.hgrow="ALWAYS" />
+        <ColorPicker fx:id="secColorCheckbox" maxWidth="1.7976931348623157E308" onAction="#secPlayerColorChanged" HBox.hgrow="ALWAYS">
             <padding>
-                <Insets top="10.0"/>
+                <Insets top="10.0" />
             </padding>
         </ColorPicker>
     </HBox>
     <HBox prefHeight="58.0" prefWidth="368.0" spacing="50.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
-        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="16.0" prefWidth="115.0"
-               text="Board size (n x n) :" HBox.hgrow="ALWAYS"/>
-        <ComboBox fx:id="boardSizeCheckbox" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="136.0"
-                  promptText="Choose Board size(n x n)" HBox.hgrow="ALWAYS">
+        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="16.0" prefWidth="115.0" text="Board size (n x n) :" HBox.hgrow="ALWAYS" />
+        <ComboBox fx:id="boardSizeCheckbox" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="136.0" promptText="Choose Board size(n x n)" HBox.hgrow="ALWAYS">
             <items>
                 <FXCollections fx:factory="observableArrayList">
-                    <Integer fx:value="4"/>
-                    <Integer fx:value="5"/>
-                    <Integer fx:value="6"/>
-                    <Integer fx:value="7"/>
-                    <Integer fx:value="8"/>
-                    <Integer fx:value="9"/>
-                    <Integer fx:value="10"/>
-                    <Integer fx:value="11"/>
-                    <Integer fx:value="12"/>
-                    <Integer fx:value="13"/>
-                    <Integer fx:value="14"/>
-                    <Integer fx:value="15"/>
-                    <Integer fx:value="16"/>
-                    <Integer fx:value="17"/>
-                    <Integer fx:value="18"/>
-                    <Integer fx:value="19"/>
-                    <Integer fx:value="20"/>
+                    <Integer fx:value="4" />
+                    <Integer fx:value="5" />
+                    <Integer fx:value="6" />
+                    <Integer fx:value="7" />
+                    <Integer fx:value="8" />
+                    <Integer fx:value="9" />
+                    <Integer fx:value="10" />
+                    <Integer fx:value="11" />
+                    <Integer fx:value="12" />
+                    <Integer fx:value="13" />
+                    <Integer fx:value="14" />
+                    <Integer fx:value="15" />
+                    <Integer fx:value="16" />
+                    <Integer fx:value="17" />
+                    <Integer fx:value="18" />
+                    <Integer fx:value="19" />
+                    <Integer fx:value="20" />
                 </FXCollections>
             </items>
             <value>
-                <Integer fx:value="8"/>
+                <Integer fx:value="8" />
             </value>
         </ComboBox>
         <padding>
-            <Insets left="30.0" top="10.0"/>
+            <Insets left="30.0" top="10.0" />
         </padding>
     </HBox>
-    <Button contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#saveSettings"
-            prefHeight="26.0" prefWidth="273.0" text="Apply" textAlignment="CENTER" textFill="#15a12c"
-            GridPane.hgrow="ALWAYS" GridPane.rowIndex="3"/>
-    <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#exitSettingsWindow" prefHeight="26.0"
-            prefWidth="116.0" text="Cancel" textFill="#f50707" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3"/>
+    <Button contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#saveSettings" prefHeight="26.0" prefWidth="273.0" text="Apply" textAlignment="CENTER" textFill="#15a12c" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
+    <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#exitSettingsWindow" prefHeight="26.0" prefWidth="116.0" text="Cancel" textFill="#f50707" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
 </GridPane>

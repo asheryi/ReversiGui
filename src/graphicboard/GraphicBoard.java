@@ -26,49 +26,12 @@ public class GraphicBoard extends GridPane {
     private Color secColor;
     private int rows;
     private int columns;
-    private Color[] cellColors = {Color.GRAY, Color.YELLOW, Color.AQUA};
-    private Color cellColor;
+    private Color[] strokeColors = {Color.BLUE, Color.AQUA};
+    private Color strokeColor=Color.YELLOW;
+    private Color cellColor=Color.GRAY;
     private List<Cell> moves;
 
-    public GraphicBoard() {
-
-        FXMLLoader fxmlLoader = new
-                FXMLLoader(getClass().getResource("GraphicBoard.fxml"));
-
-        this.rows = 8;
-        this.columns = 8;
-        List<Cell> blacks = new ArrayList<>(2);
-        List<Cell> whites = new ArrayList<>(2);
-
-        blacks.add(new Cell(rows / 2, columns / 2 + 1));
-        blacks.add(new Cell(rows / 2 + 1, columns / 2));
-
-        whites.add(new Cell(rows / 2, columns / 2));
-        whites.add(new Cell(rows / 2 + 1, columns / 2 + 1));
-
-        this.board = new Board(8, 8, blacks, whites);
-
-        this.firstColor = Color.BLACK;
-        this.secColor = Color.WHITE;
-
-        this.cellColor = Color.GRAY;
-        if (firstColor == this.cellColor || secColor == this.cellColor) {
-            this.cellColor = this.cellColors[0];
-            if (firstColor == this.cellColor || secColor == this.cellColor) {
-                this.cellColor = this.cellColors[1];
-            }
-        }
-
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-    }
-
-    public GraphicBoard(Color firstPlayerColor, Color secPlayerColor) {
+    public GraphicBoard(Color [] playersColor) {
 
         // this.board = board;
         FXMLLoader fxmlLoader = new
@@ -77,14 +40,13 @@ public class GraphicBoard extends GridPane {
         // this.rows = board.getRows();
         //this.columns = board.getColumns();
 
-        this.firstColor = firstPlayerColor;
-        this.secColor = secPlayerColor;
+        this.firstColor = playersColor[0];
+        this.secColor = playersColor[1];
 
-        this.cellColor = Color.GRAY;
-        if (firstColor == this.cellColor || secColor == this.cellColor) {
-            this.cellColor = this.cellColors[0];
-            if (firstColor == this.cellColor || secColor == this.cellColor) {
-                this.cellColor = this.cellColors[1];
+        if (firstColor == this.strokeColor || secColor == this.strokeColor) {
+            this.strokeColor = this.strokeColors[0];
+            if (firstColor == this.strokeColor || secColor == this.strokeColor) {
+                this.strokeColor = this.strokeColors[1];
             }
         }
 
@@ -116,32 +78,34 @@ public class GraphicBoard extends GridPane {
         int squreSide = cellHeight >= cellWidth ? cellWidth : cellHeight;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                Rectangle rec = new Rectangle(squreSide, squreSide, this.cellColor);
+                Rectangle rec = new Rectangle(squreSide-2, squreSide-2, this.cellColor);
                 rec.setStroke(Color.GREEN);
+                rec.setStrokeWidth(1);
                 this.add(rec, j, i);
                 if (board_.getCellValue(i + 1, j + 1) == TypesOf.Color.black) {
                     Ellipse elipse = new Ellipse(squreSide / 3, squreSide / 6);
                     setHalignment(elipse, HPos.CENTER);
-                    elipse.setStroke(Color.BLUE);
+                    elipse.setStroke(strokeColor);
                     elipse.setFill(firstColor);
-                    elipse.setStrokeWidth(3);
+                    elipse.setStrokeWidth(1);
                     this.add(elipse, j, i);
 
                 } else if (board_.getCellValue(i + 1, j + 1) == TypesOf.Color.white) {
                     Ellipse elipse = new Ellipse(squreSide / 3, squreSide / 6);
                     setHalignment(elipse, HPos.CENTER);
-                    elipse.setStroke(Color.BLUE);
+                    elipse.setStroke(strokeColor);
                     elipse.setFill(secColor);
-                    elipse.setStrokeWidth(3);
+                    elipse.setStrokeWidth(1);
                     this.add(elipse, j, i);
                 }
             }
         }
         for (Path possibleMove : possibleMoves) {
             Cell p = possibleMove.getLanding();
-            Rectangle rec = new Rectangle(squreSide, squreSide, this.cellColor);
+            Rectangle rec = new Rectangle(squreSide-2, squreSide-2, this.cellColor);
             rec.setStroke(Color.ORANGE);
-            this.add(rec, p.getColumn() - 1, p.getRow() - 1);
+            rec.setStrokeWidth(1);
+            this.add(rec, p.getColumn() -1, p.getRow() -1);
         }
 
     }
