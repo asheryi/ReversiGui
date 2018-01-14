@@ -10,7 +10,7 @@ public interface PlayerInput {
     Cell getLandingPoint();
 
     /**
-     * @return Main menu selection .
+     * @return menuWin.Main menu selection .
      */
     int getMenuSelection();
 }

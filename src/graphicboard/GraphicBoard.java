@@ -21,32 +21,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GraphicBoard extends GridPane {
-    private Board board;
     private Color firstColor;
     private Color secColor;
-    private int rows;
-    private int columns;
-    private Color[] strokeColors = {Color.BLUE, Color.AQUA};
-    private Color strokeColor=Color.YELLOW;
-    private Color cellColor=Color.GRAY;
-    private List<Cell> moves;
+    private Color strokeColor = Color.YELLOW;
+    private Color cellColor = Color.GRAY;
 
-    public GraphicBoard(Color [] playersColor) {
+    /**
+     * Building the graphic board
+     *
+     * @param playersColor - players colors .
+     */
+    public GraphicBoard(Color[] playersColor) {
 
-        // this.board = board;
         FXMLLoader fxmlLoader = new
                 FXMLLoader(getClass().getResource("GraphicBoard.fxml"));
-
-        // this.rows = board.getRows();
-        //this.columns = board.getColumns();
 
         this.firstColor = playersColor[0];
         this.secColor = playersColor[1];
 
         if (firstColor == this.strokeColor || secColor == this.strokeColor) {
-            this.strokeColor = this.strokeColors[0];
+            Color[] strokeColors = {Color.BLUE, Color.AQUA};
+            this.strokeColor = strokeColors[0];
             if (firstColor == this.strokeColor || secColor == this.strokeColor) {
-                this.strokeColor = this.strokeColors[1];
+                this.strokeColor = strokeColors[1];
             }
         }
 
@@ -61,27 +58,38 @@ public class GraphicBoard extends GridPane {
 
     }
 
-    public void selectCell(MouseEvent event) {
-        System.out.println(event.getX());
-    }
 
+    /**
+     * Draws the entire board .
+     *
+     * @param board_-       actuall board
+     * @param possibleMoves - moves to highlight . (available moves)
+     */
     public void draw(Board board_, List<Path> possibleMoves) {
 
-        System.out.println("hEY");
-        this.rows = board_.getRows();
-        this.columns = board_.getColumns();
+        int rows = board_.getRows();
+        int columns = board_.getColumns();
+
         this.getChildren().clear();
+
+        // Computing square size.
         int height = (int) this.getPrefHeight();
         int width = (int) this.getPrefWidth();
         int cellHeight = height / rows;
         int cellWidth = width / columns;
         int squreSide = cellHeight >= cellWidth ? cellWidth : cellHeight;
+
+        // Drawing the Board.
+        // Drawing the Board.
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                Rectangle rec = new Rectangle(squreSide-2, squreSide-2, this.cellColor);
+                // Adding normal cell.
+                Rectangle rec = new Rectangle(squreSide - 2, squreSide - 2, this.cellColor);
                 rec.setStroke(Color.GREEN);
                 rec.setStrokeWidth(1);
                 this.add(rec, j, i);
+                // if the cell is is not empty then according to the color , the images are drawn :
+
                 if (board_.getCellValue(i + 1, j + 1) == TypesOf.Color.black) {
                     Ellipse elipse = new Ellipse(squreSide / 3, squreSide / 6);
                     setHalignment(elipse, HPos.CENTER);
@@ -100,12 +108,14 @@ public class GraphicBoard extends GridPane {
                 }
             }
         }
+
+        // Marking possible moves.
         for (Path possibleMove : possibleMoves) {
             Cell p = possibleMove.getLanding();
-            Rectangle rec = new Rectangle(squreSide-2, squreSide-2, this.cellColor);
+            Rectangle rec = new Rectangle(squreSide - 2, squreSide - 2, this.cellColor);
             rec.setStroke(Color.ORANGE);
             rec.setStrokeWidth(1);
-            this.add(rec, p.getColumn() -1, p.getRow() -1);
+            this.add(rec, p.getColumn() - 1, p.getRow() - 1);
         }
 
     }

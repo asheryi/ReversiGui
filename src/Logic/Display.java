@@ -8,10 +8,10 @@ public interface Display {
      *
      * @param board           - board to display
      * @param moves           - moves to show on the display .
-     * @param currPlayerColor - the current player's color .
+     * @param currPlayer        - the current player's index .
      * @param passTurn        - true if the situation is that the current player have no moves and the other one does have .
      */
-    void show(Board board, List<Path> moves, TypesOf.Color currPlayerColor, boolean passTurn, int blacks, int whites);
+    void show(Board board, List<Path> moves, int currPlayer, boolean passTurn, int blacks, int whites);
 
     /**
      * Shows the error given.

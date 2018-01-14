@@ -35,7 +35,11 @@ public class ConfigWinController extends GridPane {
     private final String defaultFirstName = "Bob";
     private final String defaultSecName = "Alice";
 
+    /**
+     * Saves the chosen settings in the file of settings.
+     */
     public void saveSettings() {
+        // Extracting data from the controllers.
         Color firstPlayerColor = firstColorCheckbox.getValue();
         Color secondPlayerColor = secColorCheckbox.getValue();
         Integer n = (Integer) boardSizeCheckbox.getValue();
@@ -48,9 +52,11 @@ public class ConfigWinController extends GridPane {
             secondNameStr = defaultSecName;
         }
 
+        // Constructing the coded data as string .
         String data = firstNameStr + "\n" + firstPlayerColor + "\n"
                 + secondNameStr + "\n" + secondPlayerColor + "\n" + n;
 
+        // Writing.
         Path file = Paths.get("settings.txt");
         try {
             Files.write(file, Collections.singleton(data), Charset.forName("UTF-8"));
@@ -61,10 +67,15 @@ public class ConfigWinController extends GridPane {
         exitSettingsWindow();
     }
 
+    /**
+     * Exits the windows if cancel / apply is pressed.
+     */
     public void exitSettingsWindow() {
         try {
+            Scene oldScene = new Scene(FXMLLoader.load(this.getClass().getResource("/menuWin/menuWin.fxml")));
+            oldScene.getStylesheets().add(getClass().getResource("/menuWin/application.css").toExternalForm());
             ((Stage) firstColorCheckbox.getScene().getWindow()).setScene
-                    (new Scene(FXMLLoader.load(this.getClass().getResource("/menuWin/menuWin.fxml"))));
+                    (oldScene);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,7 +91,12 @@ public class ConfigWinController extends GridPane {
         playerColorChanged(1);
     }
 
-    public void playerColorChanged(int player) {
+    /**
+     * Checks if the players colors are the same , and doesn't allow it.
+     *
+     * @param player
+     */
+    private void playerColorChanged(int player) {
         if (firstColorCheckbox.getValue().equals(secColorCheckbox.getValue())) {
             Color defaultColor = Color.valueOf("Black");
             if (defaultColor.equals(firstColorCheckbox.getValue()))

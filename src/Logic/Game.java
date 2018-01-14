@@ -1,11 +1,8 @@
 package Logic;
 
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * ${class}
- */
+
 public class Game {
     private GameLogic gameLogic;
     private Player[] players;
@@ -26,9 +23,6 @@ public class Game {
 
         players = new Player[2];
         displays = new Display[2];
-        //TODO:what is the purpose of these lists?
-        List<Cell> blacks = new ArrayList<>(2);
-        List<Cell> whites = new ArrayList<>(2);
 
         board.setCellAs(rows / 2, columns / 2 + 1, TypesOf.Color.black);
         board.setCellAs(rows / 2 + 1, columns / 2, TypesOf.Color.black);
@@ -41,7 +35,7 @@ public class Game {
 
         this.displays[0] = display1;
         this.displays[1] = display2;
-        //TODO:temporary i insert the size manually.
+
         createPlayers(2, 2);
 
         this.currPlayerValidMoves = gameLogic.validMovePaths(board, TypesOf.Color.black);
@@ -58,72 +52,15 @@ public class Game {
         Counter whitesCounter = new Counter(whites);
 
 
-        PlayerInput pc1 = new ConsoleController();
-        PlayerInput pc2 = new ConsoleController();
-        HumanPlayer humanPlayer = new HumanPlayer(pc1, blacksCounter, TypesOf.Color.black);
+        HumanPlayer humanPlayer = new HumanPlayer(null, blacksCounter, TypesOf.Color.black);
         this.players[0] = humanPlayer;
         this.players[0].updateScore(2);
 
 
-        this.players[1] = new HumanPlayer(pc2, whitesCounter, TypesOf.Color.white);
+        this.players[1] = new HumanPlayer(null, whitesCounter, TypesOf.Color.white);
         this.players[1].updateScore(whites);
 
         this.currPlayer = 0;
-    }
-
-    /**
-     * Starting the actual game .
-     */
-    public void start() {
-        TypesOf.Color currPlayerColor = (players[currPlayer].getColor());
-
-        List<Path> movePaths = this.gameLogic.validMovePaths(board, currPlayerColor);
-        boolean currPlayerhasMoves = !movePaths.isEmpty();
-
-        TypesOf.GameStatus gameStatus = gameLogic.currGameStatus(board, currPlayerhasMoves, currPlayerColor,
-                players[0].getScore(),
-                players[1].getScore());
-
-        while (gameStatus == TypesOf.GameStatus.noOneWon || gameStatus == TypesOf.GameStatus.passTurn) {
-
-            boolean passTurnState = gameStatus == TypesOf.GameStatus.passTurn;
-            this.displays[currPlayer].show(board, movePaths, currPlayerColor, passTurnState, players[0].getScore(),
-                    players[1].getScore());
-
-            if (!passTurnState) {
-                Cell move = players[currPlayer].chooseAndReturnMove(movePaths);
-                Path currPathOfLandingPoint;
-
-                while (true) {
-                    if (move == null) {
-                        displays[currPlayer].showError(TypesOf.Error.notIntegers);
-                    } else if (isOutOfBounds(move)) {
-                        displays[currPlayer].showError(TypesOf.Error.outOfBounds);
-                    } else {
-                        currPathOfLandingPoint = pathOfLandingPoint(movePaths, move);
-                        if (currPathOfLandingPoint == null) {
-                            displays[currPlayer].showError(TypesOf.Error.notValidMove);
-                        } else {
-                            displays[currPlayer].showMoveDone(move, currPlayerColor);
-                            break;
-                        }
-                    }
-                    move = players[currPlayer].chooseAndReturnMove(movePaths);
-                }
-                this.attackThose(currPathOfLandingPoint, currPlayerColor);
-
-            }
-
-            currPlayerColor = nextPlayer();
-            movePaths = this.gameLogic.validMovePaths(board, currPlayerColor);
-            currPlayerhasMoves = !movePaths.isEmpty();
-
-            gameStatus = gameLogic.currGameStatus(board, currPlayerhasMoves, currPlayerColor, players[0].getScore(),
-                    players[1].getScore());
-        }
-
-        displays[currPlayer].show(board, null, TypesOf.Color.empty, false, players[0].getScore(), players[1].getScore());
-        displays[currPlayer].showEndGameStatus(gameStatus);
     }
 
     public void makeMove(Cell move) {
@@ -147,13 +84,18 @@ public class Game {
 
         boolean passTurnState = gameStatus == TypesOf.GameStatus.passTurn;
 
-        if (gameStatus == TypesOf.GameStatus.passTurn) {
+        if (passTurnState) {
             currPlayerColor = nextPlayer();
         }
-        this.displays[currPlayer].showEndGameStatus(gameStatus);
 
-        this.displays[currPlayer].show(board, currPlayerValidMoves, currPlayerColor, passTurnState, players[0].getScore(),
-                players[1].getScore());
+        // Show board
+        this.displays[currPlayer].show(board, currPlayerValidMoves, currPlayerColor == TypesOf.Color.black ? 0 : 1
+                , passTurnState, players[0].getScore(), players[1].getScore());
+
+        // If end game :
+        if (gameStatus != TypesOf.GameStatus.noOneWon && !passTurnState) {
+            this.displays[currPlayer].showEndGameStatus(gameStatus);
+        }
 
     }
 
@@ -219,22 +161,11 @@ public class Game {
         updateScores(players[currPlayer], players[1 - currPlayer], path.length());
     }
 
-    public final Board getBoard() {
-        return this.board;
-    }
-
-    public List<Path> getValidMoves() {
+    public List<Path> getCurrPlayerValidMoves() {
         return this.currPlayerValidMoves;
     }
 
-    public int getCurrPlayer() {
+    public int getCurrPlayerIndex() {
         return currPlayer;
-    }
-
-    public int[] getScores() {
-        //TODO: not sure what is the better way, create array every time in this function or create it ones but keep it
-        //TODO:as Game member.
-        int[] socres = {players[0].getScore(), players[1].getScore()};
-        return socres;
     }
 }

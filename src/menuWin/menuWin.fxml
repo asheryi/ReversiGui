@@ -6,20 +6,22 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="rootGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="346.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuWin.MenuWinController">
+<GridPane fx:id="rootGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+          prefHeight="346.0" prefWidth="346.0" xmlns="http://javafx.com/javafx/8.0.121"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuWin.MenuWinController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="115.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="172.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="145.0" minHeight="10.0" prefHeight="108.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="115.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="172.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="145.0" minHeight="10.0" prefHeight="108.0" vgrow="SOMETIMES"/>
     </rowConstraints>
     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="50.0">
-        <children>
-            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#startGame" prefHeight="69.0" prefWidth="346.0" text="Start Game" />
-        </children>
+        <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                onAction="#startGame" prefHeight="69.0" prefWidth="346.0" text="Start Game"/>
     </VBox>
-    <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#exit" text="Exit" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
-      <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showConfigWin" prefHeight="52.0" prefWidth="346.0" text="Settings" GridPane.rowIndex="1" />
+    <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+            mnemonicParsing="false" onAction="#showConfigWin" prefHeight="52.0" prefWidth="346.0" text="Settings"
+            GridPane.rowIndex="1"/>
 </GridPane>
