@@ -184,9 +184,9 @@ public class MazeGameController implements Initializable, Display {
         if (gameStatus == TypesOf.GameStatus.passTurn) {
             errorLabel.setText("turn passed...");
         } else if (gameStatus == TypesOf.GameStatus.blackWon) {
-            errorLabel.setText("first player won");
+            errorLabel.setText(firstPlayerName.getText()+" won");
         } else if (gameStatus == TypesOf.GameStatus.whiteWon) {
-            errorLabel.setText("second player won");
+            errorLabel.setText(secPlayerName.getText()+" won");
         } else if (gameStatus == TypesOf.GameStatus.tie) {
             errorLabel.setText("TIE");
         } else if (gameStatus == TypesOf.GameStatus.noOneWon) {
