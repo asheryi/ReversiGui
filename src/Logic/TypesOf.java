@@ -1,8 +1,5 @@
 package Logic;
 
-/**
- * ${class}
- */
 public class TypesOf {
     public enum Color {
         empty,

@@ -3,9 +3,6 @@ package Logic;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Brain on 08/01/2018.
- */
 public class Path {
     private Cell landing;
     private List<Cell> directions = new ArrayList<>();

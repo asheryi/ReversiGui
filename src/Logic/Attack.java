@@ -1,8 +1,5 @@
 package Logic;
 
-/**
- * Created by Brain on 08/01/2018.
- */
 public class Attack {
     private Cell curr;
     private Path path;
@@ -15,9 +12,7 @@ public class Attack {
     }
 
     boolean hasNext() {
-        //TODO:change 0 to loop
         if (index < path.numberOfEatingDirections()) {
-            // ??? path.getStopCell(index) != 0 && path.getDirection(index) != 0 &&
             if ((curr.CellMinusCell(path.getDirection(index))).compareTo(path.getStopCell(index)) != 0) {
                 return true;
             } else {
