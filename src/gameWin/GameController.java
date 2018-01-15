@@ -11,6 +11,9 @@ import javafx.scene.layout.GridPane;
 import graphicboard.GraphicBoard;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Ellipse;
 import javafx.stage.Stage;
 
@@ -47,8 +50,7 @@ public class GameController implements Initializable, Display {
     private int boardSize;
     private Game game;
     private int[] scores;
-
-
+    private LinearGradient [] PlayersLG;
     public javafx.scene.control.Label statusLabel;
 
     private javax.management.timer.Timer timer;
@@ -59,6 +61,15 @@ public class GameController implements Initializable, Display {
         playersImg = new Pane[2];
         playersImg[0] = firstPlayerImg;
         playersImg[1] = secPlayerImg;
+        PlayersLG=new LinearGradient[2];
+        Stop[] stops = new Stop[] { new Stop(0, playersColor[0]), new Stop(1, Color.BLACK)};
+        PlayersLG[0] = new LinearGradient(0, 0, 2,    1, true, CycleMethod.REFLECT, stops);
+        stops = new Stop[] { new Stop(0, playersColor[1]), new Stop(1, Color.BLACK)};
+        PlayersLG[1] = new LinearGradient(0, 0, 2,    1, true, CycleMethod.REFLECT, stops);
+
+
+
+
         Board board = new Board(boardSize, boardSize, new ArrayList<>(), new ArrayList<>());
         game = new Game(boardSize, boardSize, this, this, board);
 
@@ -123,25 +134,19 @@ public class GameController implements Initializable, Display {
         int currPlayer = game.getCurrPlayerIndex();
 
         Ellipse currPlayerDisk = new Ellipse(40, 40, 20, 10);
-        currPlayerDisk.setStroke(Color.BLUE);
-        currPlayerDisk.setFill(playersColor[currPlayer]);
-        currPlayerDisk.setStrokeWidth(1);
+        currPlayerDisk.setFill(PlayersLG[currPlayer]);
 
         currPlayerImg.getChildren().clear();
         currPlayerImg.getChildren().add(0, currPlayerDisk);
 
         Ellipse firstPlayerDisk = new Ellipse(40, 40, 20, 10);
-        firstPlayerDisk.setStroke(Color.BLUE);
-        firstPlayerDisk.setFill(playersColor[0]);
-        firstPlayerDisk.setStrokeWidth(1);
+        firstPlayerDisk.setFill(PlayersLG[0]);
 
         playersImg[currPlayer].getChildren().clear();
         playersImg[currPlayer].getChildren().add(0, firstPlayerDisk);
 
         Ellipse secPlayerDisk = new Ellipse(40, 40, 20, 10);
-        secPlayerDisk.setStroke(Color.BLUE);
-        secPlayerDisk.setFill(playersColor[1]);
-        secPlayerDisk.setStrokeWidth(1);
+        secPlayerDisk.setFill(PlayersLG[1]);
 
         playersImg[1].getChildren().clear();
         playersImg[1].getChildren().add(0, secPlayerDisk);

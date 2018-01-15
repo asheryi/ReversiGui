@@ -24,9 +24,6 @@ public class MenuWinController extends GridPane {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-        System.out.println("AFTER SHOW");
-
     }
 
     @FXML

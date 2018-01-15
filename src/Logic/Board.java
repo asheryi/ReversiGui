@@ -7,7 +7,13 @@ public class Board {
     private int rows;
     private int columns;
     private TypesOf.Color[][] grid;
-
+    /**
+     * Builds the board with the given rows and columns and initialize the board.
+     * @param rows_ - int ,rows size.
+     * @param columns_ - - int , columns size.
+     * @param blacks - vector of cells to place blacks disks.
+     * @param whites - vector of cells to place whites disks.
+     */
    public Board(int rows_, int columns_, List<Cell> blacks, List<Cell> whites) {
         this.rows = rows_;
         this.columns = columns_;
@@ -31,16 +37,25 @@ public class Board {
         }
     }
 
-
+    /**
+     * Fills the corresponding real cell on the board , as the indexes are from 1 to the size of line/column.
+     * @param i - int , index of line (1-DEFAULT_ROWS)
+     * @param j - - int , index of columns (1-DEFAULT_COLUMNS)
+     * @param value - the value of the cell.
+     */
     void setCellAs(int i, int j, TypesOf.Color value) {
         this.grid[i - 1][j - 1] = value;
     }
 
-
+    /**
+     * @return how many rows .
+     */
     public int getRows() {
         return rows;
     }
-
+    /**
+     * @return how many columns .
+     */
     public int getColumns() {
         return columns;
     }
@@ -49,7 +64,10 @@ public class Board {
         return this.grid[i - 1][j - 1];
     }
 
-
+    /**
+     * Copy constructor board
+     * @param board - board
+     */
     Board(Board board) {
         this.columns = board.columns;
         this.rows = board.rows;

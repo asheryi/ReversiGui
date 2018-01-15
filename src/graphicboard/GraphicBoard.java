@@ -4,15 +4,14 @@ import Logic.Board;
 import Logic.Cell;
 import Logic.Path;
 import Logic.TypesOf;
+import com.sun.javafx.geom.Curve;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.*;
+import javafx.scene.shape.*;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 
@@ -23,9 +22,9 @@ import java.util.List;
 public class GraphicBoard extends GridPane {
     private Color firstColor;
     private Color secColor;
-    private Color strokeColor = Color.YELLOW;
     private Color cellColor = Color.GRAY;
-
+    private LinearGradient firstPlayerLG;
+    private LinearGradient secPlayerLG;
     /**
      * Building the graphic board
      *
@@ -39,13 +38,18 @@ public class GraphicBoard extends GridPane {
         this.firstColor = playersColor[0];
         this.secColor = playersColor[1];
 
-        if (firstColor == this.strokeColor || secColor == this.strokeColor) {
+        if (firstColor == this.cellColor || secColor == this.cellColor) {
             Color[] strokeColors = {Color.BLUE, Color.AQUA};
-            this.strokeColor = strokeColors[0];
-            if (firstColor == this.strokeColor || secColor == this.strokeColor) {
-                this.strokeColor = strokeColors[1];
+            this.cellColor = Color.GREEN;
+            if (firstColor == this.cellColor || secColor == this.cellColor) {
+                this.cellColor = Color.YELLOW;
             }
         }
+
+        Stop[] stops = new Stop[] { new Stop(0, firstColor), new Stop(1, Color.BLACK)};
+         firstPlayerLG = new LinearGradient(0, 0, 2,    1, true, CycleMethod.REFLECT, stops);
+        stops = new Stop[] { new Stop(0, secColor), new Stop(1, Color.BLACK)};
+        secPlayerLG = new LinearGradient(0, 0, 2,    1, true, CycleMethod.REFLECT, stops);
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -93,17 +97,13 @@ public class GraphicBoard extends GridPane {
                 if (board_.getCellValue(i + 1, j + 1) == TypesOf.Color.black) {
                     Ellipse elipse = new Ellipse(squreSide / 3, squreSide / 6);
                     setHalignment(elipse, HPos.CENTER);
-                    elipse.setStroke(strokeColor);
-                    elipse.setFill(firstColor);
-                    elipse.setStrokeWidth(1);
+                    elipse.setFill(firstPlayerLG);
                     this.add(elipse, j, i);
 
                 } else if (board_.getCellValue(i + 1, j + 1) == TypesOf.Color.white) {
                     Ellipse elipse = new Ellipse(squreSide / 3, squreSide / 6);
                     setHalignment(elipse, HPos.CENTER);
-                    elipse.setStroke(strokeColor);
-                    elipse.setFill(secColor);
-                    elipse.setStrokeWidth(1);
+                    elipse.setFill(secPlayerLG);
                     this.add(elipse, j, i);
                 }
             }
