@@ -1,6 +1,4 @@
-package ConfigWin;/**
- * Created by Brain on 1/10/2018.
- */
+package ConfigWin;
 
 import java.io.*;
 
@@ -9,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -31,6 +30,8 @@ public class ConfigWinController extends GridPane {
     private TextField firstName;
     @FXML
     private TextField secondName;
+    @FXML
+    private Label firstTimeErrorLabel;
 
     private final String defaultFirstName = "Bob";
     private final String defaultSecName = "Alice";
@@ -79,6 +80,10 @@ public class ConfigWinController extends GridPane {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setSettingsFileRequired(String error) {
+        firstTimeErrorLabel.setText(error);
     }
 
     @FXML

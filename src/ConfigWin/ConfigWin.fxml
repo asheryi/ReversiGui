@@ -26,8 +26,9 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="1.0" prefHeight="1.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
     </rowConstraints>
     <HBox prefHeight="125.0" prefWidth="433.0" spacing="58.0" GridPane.hgrow="ALWAYS">
         <GridPane.margin>
@@ -89,8 +90,11 @@
             <Insets left="30.0" top="10.0" />
         </padding>
     </HBox>
-    <Button contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#saveSettings" prefHeight="26.0" prefWidth="273.0" text="Apply" textAlignment="CENTER" textFill="#15a12c" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
-    <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#exitSettingsWindow" prefHeight="26.0" prefWidth="116.0" text="Cancel" textFill="#f50707" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
+    <Button contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#saveSettings"
+            prefHeight="26.0" prefWidth="273.0" text="Apply" textAlignment="CENTER" textFill="#15a12c"
+            GridPane.hgrow="ALWAYS" GridPane.rowIndex="6"/>
+    <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#exitSettingsWindow" prefHeight="26.0"
+            prefWidth="116.0" text="Cancel" textFill="#f50707" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6"/>
     <TextField fx:id="firstName" alignment="CENTER" maxWidth="1.7976931348623157E308" promptText="Enter first player name here (default &quot;Bob&quot;)" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
         <font>
             <Font name="System Italic" size="13.0" />
@@ -101,4 +105,10 @@
             <Font name="System Italic" size="13.0" />
         </font>
     </TextField>
+    <Label fx:id="firstTimeErrorLabel" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="99.0" prefWidth="400.0"
+           textFill="RED" underline="true" GridPane.rowIndex="5">
+        <font>
+            <Font name="System Bold" size="18.0"/>
+        </font>
+    </Label>
 </GridPane>
