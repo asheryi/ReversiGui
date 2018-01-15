@@ -1,4 +1,4 @@
-package reversigamegui;
+package gameWin;
 
 import Logic.*;
 import Logic.Cell;

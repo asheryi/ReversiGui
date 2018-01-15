@@ -38,8 +38,8 @@ public class MenuWinController extends GridPane {
         Stage stage = (Stage) rootGrid.getScene().getWindow();
         try {
             stage.setTitle("Reversi");
-            Scene scene = new Scene(FXMLLoader.load(this.getClass().getResource("/reversigamegui/Game.fxml")), 600, 600);
-            scene.getStylesheets().add(getClass().getResource("/reversigamegui/game.css").toExternalForm());
+            Scene scene = new Scene(FXMLLoader.load(this.getClass().getResource("/gameWin/Game.fxml")), 600, 600);
+            scene.getStylesheets().add(getClass().getResource("/gameWin/game.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
         } catch (Exception ex) {

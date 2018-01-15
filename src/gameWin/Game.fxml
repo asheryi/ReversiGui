@@ -12,7 +12,7 @@
 
 <GridPane fx:id="boardContainer_" maxHeight="1.7976931348623157E308" prefHeight="633.0" prefWidth="527.0"
           xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="reversigamegui.GameController">
+          fx:controller="gameWin.GameController">
     <columnConstraints>
         <ColumnConstraints/>
         <ColumnConstraints/>
