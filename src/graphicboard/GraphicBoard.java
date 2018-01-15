@@ -1,22 +1,16 @@
 package graphicboard;
 
-import Logic.Board;
-import Logic.Cell;
-import Logic.Path;
-import Logic.TypesOf;
-import com.sun.javafx.geom.Curve;
-import javafx.event.Event;
-import javafx.event.EventHandler;
+import gameLogic.Board;
+import gameLogic.Cell;
+import gameLogic.Path;
+import gameLogic.TypesOf;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.*;
 import javafx.scene.shape.*;
-import javafx.stage.Stage;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class GraphicBoard extends GridPane {

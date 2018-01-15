@@ -1,4 +1,4 @@
-package Logic;
+package gameLogic;
 
 public class Attack {
     private Cell curr;

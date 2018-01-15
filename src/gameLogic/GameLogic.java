@@ -1,12 +1,8 @@
-package Logic;
+package gameLogic;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * ${class}
- */
 public interface GameLogic {
     /**
      * Return valid moves , each move with it's path - it's trajectories to "eat" on the board .

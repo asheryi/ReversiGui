@@ -32,7 +32,6 @@ public class MenuWinController extends GridPane {
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
-
         }
     }
 

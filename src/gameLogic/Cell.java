@@ -1,31 +1,37 @@
-package Logic;
+package gameLogic;
 
 public class Cell implements Comparable<Cell> {
     private int row;
     private int column;
+
     /**
      * Cell Constructor.
-     * @param row_ - int ,row of cell.
+     *
+     * @param row_    - int ,row of cell.
      * @param column_ - - int , column of cell.
      */
-   public Cell(int row_, int column_) {
+    public Cell(int row_, int column_) {
         row = row_;
         column = column_;
     }
+
     /**
-     *returns the cell column.
+     * returns the cell column.
      */
-  public   int getColumn() {
+    public int getColumn() {
         return column;
     }
+
     /**
-     *returns the cell row.
+     * returns the cell row.
      */
-  public  int getRow() {
+    public int getRow() {
         return row;
     }
+
     /**
      * Update this cell to be : row +p's row , col +p's col, and return reference to this .
+     *
      * @param p - point to add from .
      * @return reference to this cell after update(as described)
      */
@@ -36,23 +42,28 @@ public class Cell implements Comparable<Cell> {
     Cell CellMinusCell(Cell p) {
         return new Cell(getRow() - p.getRow(), getColumn() - p.getColumn());
     }
+
     /**
-     *Copy constructor of Cell.
+     * Copy constructor of Cell.
+     *
      * @param p - cell to be copy.
      */
     Cell(Cell p) {
         this.row = p.row;
         this.column = p.column;
     }
+
     /**
-     *applied to print the cell.
+     * applied to print the cell.
      */
     @Override
     public String toString() {
         return "(" + this.row + "," + this.column + ")";
     }
+
     /**
      * Comparing two cells row by row , column by column .
+     *
      * @param p - other cell .
      * @return true if and only if this row = to p's and same for column .
      */

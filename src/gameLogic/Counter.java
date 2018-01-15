@@ -1,8 +1,5 @@
-package Logic;
+package gameLogic;
 
-/**
- * ${class}
- */
 // Counter class to count  , use is to pass counter to several uses for read/write purposes.
 public class Counter {
     private int value;

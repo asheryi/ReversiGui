@@ -1,7 +1,7 @@
 package gameWin;
 
-import Logic.*;
-import Logic.Cell;
+import gameLogic.*;
+import gameLogic.Cell;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -50,7 +50,7 @@ public class GameController implements Initializable, Display {
     private int boardSize;
     private Game game;
     private int[] scores;
-    private LinearGradient [] PlayersLG;
+    private LinearGradient[] PlayersLG;
     public javafx.scene.control.Label statusLabel;
 
     private javax.management.timer.Timer timer;
@@ -61,13 +61,11 @@ public class GameController implements Initializable, Display {
         playersImg = new Pane[2];
         playersImg[0] = firstPlayerImg;
         playersImg[1] = secPlayerImg;
-        PlayersLG=new LinearGradient[2];
-        Stop[] stops = new Stop[] { new Stop(0, playersColor[0]), new Stop(1, Color.BLACK)};
-        PlayersLG[0] = new LinearGradient(0, 0, 2,    1, true, CycleMethod.REFLECT, stops);
-        stops = new Stop[] { new Stop(0, playersColor[1]), new Stop(1, Color.BLACK)};
-        PlayersLG[1] = new LinearGradient(0, 0, 2,    1, true, CycleMethod.REFLECT, stops);
-
-
+        PlayersLG = new LinearGradient[2];
+        Stop[] stops = new Stop[]{new Stop(0, playersColor[0]), new Stop(1, Color.BLACK)};
+        PlayersLG[0] = new LinearGradient(0, 0, 2, 1, true, CycleMethod.REFLECT, stops);
+        stops = new Stop[]{new Stop(0, playersColor[1]), new Stop(1, Color.BLACK)};
+        PlayersLG[1] = new LinearGradient(0, 0, 2, 1, true, CycleMethod.REFLECT, stops);
 
 
         Board board = new Board(boardSize, boardSize, new ArrayList<>(), new ArrayList<>());
@@ -182,7 +180,7 @@ public class GameController implements Initializable, Display {
      ***********************************************************************************************************/
 
     @Override
-    public void show(Board board, List<Logic.Path> moves, int currPlayer, boolean passTurn, int blacks, int whites) {
+    public void show(Board board, List<gameLogic.Path> moves, int currPlayer, boolean passTurn, int blacks, int whites) {
         graphicBoard.draw(board, game.getCurrPlayerValidMoves());
         scores[0] = blacks;
         scores[1] = whites;
@@ -209,11 +207,13 @@ public class GameController implements Initializable, Display {
         } else if (gameStatus == TypesOf.GameStatus.tie) {
             statusLabel.setText("It's a tie , try again !");
         }
+
         // No more pressing is allowed !
         boardContainer_.setOnMouseClicked(event -> {
         });
     }
 
+    // In the current implementation of the Display interface there is no need for this func
     @Override
     public void showMoveDone(Cell cell, TypesOf.Color playerColor) {
 

@@ -1,8 +1,6 @@
-package Logic;
+package gameLogic;
 
-/**
- * ${class}
- */
+// Takes input from user
 public interface PlayerInput {
     /**
      * @return selected landing point , aka move .

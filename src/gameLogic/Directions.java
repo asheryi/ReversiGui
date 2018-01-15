@@ -1,8 +1,5 @@
-package Logic;
+package gameLogic;
 
-/**
- * ${class}
- */
 public class Directions {
     private static final Cell left = new Cell(0, -1);
     private static final Cell right = new Cell(0, 1);
