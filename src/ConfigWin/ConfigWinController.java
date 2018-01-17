@@ -4,6 +4,7 @@ import java.io.*;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
@@ -13,13 +14,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class ConfigWinController extends GridPane {
+public class ConfigWinController extends GridPane implements Initializable {
     @FXML
     private ColorPicker firstColorCheckbox;
     @FXML
@@ -36,6 +40,12 @@ public class ConfigWinController extends GridPane {
     private final String defaultFirstName = "Bob";
     private final String defaultSecName = "Alice";
 
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+        loadSettings();
+    }
     /**
      * Saves the chosen settings in the file of settings.
      */
@@ -111,6 +121,21 @@ public class ConfigWinController extends GridPane {
             else
                 secColorCheckbox.setValue(defaultColor);
 
+        }
+    }
+    public void loadSettings() {
+        try {
+            Path path=Paths.get("settings.txt");
+            if(Files.exists(path)) {
+                List<String> settings = Files.readAllLines(path);
+                firstName.setPromptText("Enter first player name here (current is: "+settings.get(0)+")");
+                firstColorCheckbox.setValue(Color.valueOf(settings.get(1)));
+                secondName.setPromptText("Enter second player name here (current is: "+settings.get(2)+")");
+                secColorCheckbox.setValue(Color.valueOf(settings.get(3)));
+                boardSizeCheckbox.setValue(Integer.valueOf(settings.get(4)));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
