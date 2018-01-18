@@ -71,8 +71,6 @@ public class Game {
         if (currPathOfLandingPoint == null) {
             displays[currPlayer].showError(TypesOf.Error.notValidMove);
             return;
-        } else {
-            displays[currPlayer].showMoveDone(move, currPlayerColor);
         }
         this.attackThose(currPathOfLandingPoint, currPlayerColor);
 
@@ -96,7 +94,6 @@ public class Game {
         if (gameStatus != TypesOf.GameStatus.noOneWon && !passTurnState) {
             this.displays[currPlayer].showEndGameStatus(gameStatus);
         }
-
     }
 
     /**
@@ -110,7 +107,6 @@ public class Game {
         curr.updateScore(curr.getScore() + score);
         other.updateScore(other.getScore() - score + 1);
     }
-
 
     /**
      * Switching the player .

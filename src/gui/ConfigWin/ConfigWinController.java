@@ -1,9 +1,8 @@
-package ConfigWin;
+package gui.ConfigWin;
 
 import java.io.*;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
@@ -31,21 +30,22 @@ public class ConfigWinController extends GridPane implements Initializable {
     @FXML
     private ComboBox boardSizeCheckbox;
     @FXML
-    private TextField firstName;
+    private TextField firstNameField;
     @FXML
-    private TextField secondName;
+    private TextField secondNameField;
     @FXML
     private Label firstTimeErrorLabel;
 
-    private final String defaultFirstName = "Bob";
-    private final String defaultSecName = "Alice";
-
+    private String firstName = "Bob";
+    private String secName = "Alice";
+    private Scene menuScene;
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
         loadSettings();
     }
+
     /**
      * Saves the chosen settings in the file of settings.
      */
@@ -54,13 +54,17 @@ public class ConfigWinController extends GridPane implements Initializable {
         Color firstPlayerColor = firstColorCheckbox.getValue();
         Color secondPlayerColor = secColorCheckbox.getValue();
         Integer n = (Integer) boardSizeCheckbox.getValue();
-        String firstNameStr = firstName.getText();
+        String firstNameStr = firstNameField.getText();
         if (firstNameStr.equals("")) {
-            firstNameStr = defaultFirstName;
+            firstNameStr = this.firstName;
+        } else {
+            this.firstName = firstNameStr;
         }
-        String secondNameStr = secondName.getText();
+        String secondNameStr = secondNameField.getText();
         if (secondNameStr.equals("")) {
-            secondNameStr = defaultSecName;
+            secondNameStr = secName;
+        } else {
+            this.secName = secondNameStr;
         }
 
         // Constructing the coded data as string .
@@ -74,22 +78,18 @@ public class ConfigWinController extends GridPane implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        this.firstTimeErrorLabel.setText("");
 
         exitSettingsWindow();
+        setNamesToDisplay();
     }
 
     /**
      * Exits the windows if cancel / apply is pressed.
      */
     public void exitSettingsWindow() {
-        try {
-            Scene oldScene = new Scene(FXMLLoader.load(this.getClass().getResource("/menuWin/menuWin.fxml")));
-            oldScene.getStylesheets().add(getClass().getResource("/menuWin/application.css").toExternalForm());
-            ((Stage) firstColorCheckbox.getScene().getWindow()).setScene
-                    (oldScene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ((Stage) firstColorCheckbox.getScene().getWindow()).setScene
+                (menuScene);
     }
 
     public void setSettingsFileRequired(String error) {
@@ -123,19 +123,36 @@ public class ConfigWinController extends GridPane implements Initializable {
 
         }
     }
-    public void loadSettings() {
+
+    private void loadSettings() {
         try {
-            Path path=Paths.get("settings.txt");
-            if(Files.exists(path)) {
+            Path path = Paths.get("settings.txt");
+            if (Files.exists(path)) {
                 List<String> settings = Files.readAllLines(path);
-                firstName.setPromptText("Enter first player name here (current is: "+settings.get(0)+")");
                 firstColorCheckbox.setValue(Color.valueOf(settings.get(1)));
-                secondName.setPromptText("Enter second player name here (current is: "+settings.get(2)+")");
                 secColorCheckbox.setValue(Color.valueOf(settings.get(3)));
                 boardSizeCheckbox.setValue(Integer.valueOf(settings.get(4)));
+
+                this.firstName = settings.get(0);
+                this.secName = settings.get(2);
+                setNamesToDisplay();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Sets the names to the corresponding fields on the screen.
+     */
+    private void setNamesToDisplay() {
+        firstNameField.setPromptText("Enter first player name here (current is: " + firstName + ")");
+        secondNameField.setPromptText("Enter second player name here (current is: " + secName + ")");
+        firstNameField.setText("");
+        secondNameField.setText("");
+    }
+
+    public void setMenuScene(Scene menuScene_) {
+        this.menuScene = menuScene_;
     }
 }

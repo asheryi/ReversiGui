@@ -1,4 +1,4 @@
-package graphicboard;
+package gui.graphicboard;
 
 import gameLogic.Board;
 import gameLogic.Cell;

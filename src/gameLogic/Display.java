@@ -26,12 +26,4 @@ public interface Display {
      * @param gameStatus
      */
     void showEndGameStatus(TypesOf.GameStatus gameStatus);
-
-    /**
-     * Show this move in the display .(this color made the turn).
-     *
-     * @param cell
-     * @param playerColor
-     */
-    void showMoveDone(Cell cell, TypesOf.Color playerColor);
 }

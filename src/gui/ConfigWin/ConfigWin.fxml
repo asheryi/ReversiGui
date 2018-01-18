@@ -17,7 +17,7 @@
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
           prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="ConfigWin.ConfigWinController">
+          fx:controller="gui.ConfigWin.ConfigWinController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
@@ -95,12 +95,12 @@
             GridPane.hgrow="ALWAYS" GridPane.rowIndex="6"/>
     <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#exitSettingsWindow" prefHeight="26.0"
             prefWidth="116.0" text="Cancel" textFill="#f50707" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6"/>
-    <TextField fx:id="firstName" alignment="CENTER" maxWidth="1.7976931348623157E308" promptText="Enter first player name here (default &quot;Bob&quot;)" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+    <TextField fx:id="firstNameField" alignment="CENTER" maxWidth="1.7976931348623157E308" promptText="Enter first player name here (default &quot;Bob&quot;)" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
         <font>
             <Font name="System Italic" size="13.0" />
         </font>
     </TextField>
-    <TextField fx:id="secondName" alignment="CENTER" maxWidth="1.7976931348623157E308" promptText="Enter second player name here (default &quot;Alice&quot;)" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
+    <TextField fx:id="secondNameField" alignment="CENTER" maxWidth="1.7976931348623157E308" promptText="Enter second player name here (default &quot;Alice&quot;)" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
         <font>
             <Font name="System Italic" size="13.0" />
         </font>

@@ -9,7 +9,7 @@
 
 <GridPane fx:id="rootGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
           prefHeight="346.0" prefWidth="346.0" xmlns="http://javafx.com/javafx/8.0.121"
-          xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuWin.MenuWinController">
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.menuWin.MenuWinController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
     </columnConstraints>
