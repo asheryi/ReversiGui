@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane fx:id="boardContainer_" maxHeight="1.7976931348623157E308" prefHeight="633.0" prefWidth="527.0"
+          xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="gui.gameWin.GameController">
+    <columnConstraints>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+        <ColumnConstraints minWidth="10.0" prefWidth="100.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0"/>
+    </rowConstraints>
+
+    <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+        <Label text="Curr Player:"/>
+        <Pane fx:id="currPlayerImg" prefHeight="80.0" prefWidth="80.0"/>
+        <Label text="Score:"/>
+        <Label fx:id="firstPlayerName" text="firstPlayerName"/>
+        <Pane fx:id="firstPlayerImg" prefHeight="80.0" prefWidth="80.0"/>
+        <Label fx:id="firstPlayerScore" text="Label">
+            <padding>
+                <Insets left="40.0"/>
+            </padding>
+        </Label>
+        <Label fx:id="secPlayerName" text="secPlayerName"/>
+        <Pane fx:id="secPlayerImg" prefHeight="80.0" prefWidth="80.0"/>
+        <Label fx:id="secPlayerScore" layoutX="10.0" layoutY="144.0" text="Label">
+            <padding>
+                <Insets left="40.0"/>
+            </padding>
+        </Label>
+    </VBox>
+    <Label fx:id="statusLabel" alignment="TOP_LEFT" textFill="#3f05f0" underline="true" GridPane.rowIndex="1">
+        <font>
+            <Font name="System Bold" size="12.0"/>
+        </font>
+    </Label>
+    <Button mnemonicParsing="false" onAction="#Menu" text="Menu" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+</GridPane>
